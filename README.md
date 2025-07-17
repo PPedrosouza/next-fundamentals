@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fundamentos do Next.js
+
+Este documento apresenta os principais conceitos da nova arquitetura do Next.js, destacando como o framework equilibra renderização no servidor e no cliente para entregar aplicações performáticas.
+
+---
+
+## Tríade do Next.js
+
+1. **Server Components**
+
+   * Renderizados no servidor (Node.js).
+   * A versão inicial do HTML é gerada no servidor do Next.
+
+2. **Client Components**
+
+   * Também utilizam renderização, mas o HTML resultante é hidratado com JavaScript no cliente.
+   * Permitem interatividade após a entrega da página.
+
+3. **Streaming SSR**
+
+   * Permite o envio de fragmentos de página conforme os dados vão ficando disponíveis.
+   * Mantém a conexão aberta para adicionar novos dados ao longo do tempo.
+
+> **Nota:** quanto menos diretivas `use client` você utilizar, mais rápida será a resposta ao usuário, pois reduz-se o payload de JavaScript enviado ao cliente.
+
+---
+
+## Boundaries (Limites)
+
+* **Client Boundaries**: ao importar um componente dentro de um *client component*, este também se torna um componente do cliente.
+* **Server Boundaries**: componentes que não importam nada do cliente permanecem no servidor.
+
+---
+
+## Encadeamento de Componentes
+
+Por meio da propriedade `children`, é possível:
+
+* Renderizar componentes no servidor
+* Utilizá-los dentro de componentes do cliente
+
+Isso permite manter lógica e marcação server-side, aproveitando interatividade apenas onde for necessário.
+
+---
+
+> **Objetivo da arquitetura**: enviar menos JavaScript para o navegador, tornando as aplicações mais performáticas e responsivas.
+
+---
+
+## Fluxo do Next.js (BFF)
+
+A seguir, um diagrama ilustrando o fluxo de dados entre cliente, Next.js e Back-end For Front-end (BFF):
+
+![Fluxo do Next.js](./SSR.png)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+Este é um projeto [Next.js](https://nextjs.org) inicializado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+### Instruções de execução
+
+Primeiro, execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Você pode começar a editar a página modificando `app/page.tsx`. A página atualiza automaticamente conforme você edita o arquivo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este projeto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para otimizar e carregar automaticamente a fonte [Geist](https://vercel.com/font), uma nova família de fontes da Vercel.
+
+---
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Para saber mais sobre Next.js, confira os seguintes recursos:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [Next.js Documentation](https://nextjs.org/docs) – aprenda sobre recursos e API do Next.js.
+* [Learn Next.js](https://nextjs.org/learn) – um tutorial interativo de Next.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Você também pode explorar o [repositório do Next.js no GitHub](https://github.com/vercel/next.js) – seu feedback e contribuições são bem-vindos!
+
+---
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A maneira mais fácil de implantar sua aplicação Next.js é usar a [plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), dos criadores do Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Consulte nossa [documentação de deploy do Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para mais detalhes.
+
+---
+
+*Documento gerado em 17/07/2025.*
